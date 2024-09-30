@@ -1,0 +1,113 @@
+<nav class="bg-gray-100 py-2 lg:py-5">
+  <div class="container xl:flex xl:justify-between xl:items-center">
+    <div class="xl:flex xl:items-center gap-2">
+      <div class="flex xl:flex-none items-center justify-between text-3xl">
+        <img src="assets/images/freshcart-logo.svg" alt="freshcart-logo" />
+        <button
+          class="fa-solid fa-bars navbar-btn xl:hidden"
+          (click)="toggleMenu()"
+        ></button>
+      </div>
+      <ul class="hidden xl:flex gap-5" [ngClass]="{ hidden: !isMenuOpen }">
+        <li class="mt-3 xl:mt-0">
+          <a
+            class="py-2 px-3 nav-a"
+            (click)="toggleMenu()"
+            routerLink="/home"
+            routerLinkActive="nav-active "
+            >{{ "navbar.home" | translate }}</a
+          >
+        </li>
+        <li>
+          <a
+            class="py-2 px-3 nav-a"
+            (click)="toggleMenu()"
+            routerLink="/products"
+            routerLinkActive="nav-active "
+            >{{ "navbar.products" | translate }}</a
+          >
+        </li>
+        <li>
+          <a
+            class="py-2 px-3 nav-a"
+            (click)="toggleMenu()"
+            routerLink="/categories"
+            routerLinkActive="nav-active "
+            >{{ "navbar.categories" | translate }}</a
+          >
+        </li>
+        <li>
+          <a
+            class="py-2 px-3 nav-a"
+            (click)="toggleMenu()"
+            routerLink="/brands"
+            routerLinkActive="nav-active "
+            >{{ "navbar.brands" | translate }}</a
+          >
+        </li>
+        <li>
+          <a
+            class="py-2 px-3 nav-a"
+            (click)="toggleMenu()"
+            routerLink="/allorders"
+            routerLinkActive="nav-active "
+            >{{ "navbar.yourOrders" | translate }}</a
+          >
+        </li>
+      </ul>
+    </div>
+    <ul class="hidden xl:flex xl:items-center" [ngClass]="{ hidden: !isMenuOpen }">
+      <li class="relative">
+        <a (click)="toggleLangAndMenu()" class="px-3 xl:px-2 xl:py-0.5 xl:ltr:border-r xl:rtl:border-l xl:border-black nav-a">
+          {{ _TranslateService.currentLang === "en" ? "العربية" : "English" }}
+        </a>
+      </li>
+      <li>
+        <a
+          (click)="toggleMenu()"
+          routerLink="/wishlist"
+          routerLinkActive="text-main"
+          class="relative flex items-center px-3 xl:rtl:pl-6 xl:rtl:pr-2 xl:ltr:pr-6 xl:ltr:pl-2 xl:rtl:border-l xl:ltr:border-r xl:border-black nav-a"
+        >
+          {{ "navbar.wishlist" | translate }}
+          <i class="fa-regular fa-heart"></i>
+          <span
+            class="absolute"
+            [ngClass]="{
+              'badge-rtl': _TranslateService.currentLang === 'ar',
+              'badge-ltr': _TranslateService.currentLang === 'en'
+            }"
+          >
+            {{ wishlistCounter }}
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          (click)="toggleMenu()"
+          routerLink="/cart"
+          routerLinkActive="text-main"
+          class="relative flex items-center px-3 xl:rtl:pl-6 xl:rtl:pr-2 xl:ltr:pr-6 xl:ltr:pl-2  xl:rtl:border-l xl:ltr:border-r xl:border-black nav-a"
+        >
+          {{ "navbar.cart" | translate }}
+          <i class="fa-brands fa-opencart"></i>
+          <span
+            class="absolute"
+            [ngClass]="{
+              'badge-rtl': _TranslateService.currentLang === 'ar',
+              'badge-ltr': _TranslateService.currentLang === 'en'
+            }"
+          >
+            {{ cartCounter }}
+          </span>
+        </a>
+      </li>
+      <li>
+        <a (click)="logout()" routerLinkActive="text-main" class="py-2 px-3 hover:text-red-600 transition duration-300">
+          {{ "navbar.logout" | translate }}
+        </a>
+      </li>
+    </ul>
+    
+  </div>
+</nav>
